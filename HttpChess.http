@@ -1,0 +1,6 @@
+@HttpChess_HostAddress = http://localhost:5092
+
+GET {{HttpChess_HostAddress}}/api/game
+Accept: application/json
+
+###
