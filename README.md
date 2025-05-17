@@ -22,7 +22,7 @@ To create a new chess game instance:
   Example:
 
   ```json
-  "3b8ac115-9807-472e-9ddd-b9d798657e90"
+  3b8ac115-9807-472e-9ddd-b9d798657e90
   ```
 
 ## 🏆 Viewing the Game Board
