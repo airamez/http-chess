@@ -61,8 +61,7 @@ Once you have the **Game ID**, you can view the **current board state**.
 
 Use a **GET request** to move a piece by specifying:
 
-* `source`: The **starting position** of the piece (e.g., `A7`).
-* `target`: The **destination** (e.g., `A6`).
+* `move`: The **Origing and Destine** of the piece (e.g., `A7A6`)
 
 * Request
 
