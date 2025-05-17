@@ -4,6 +4,8 @@ A simple **ASP.NET Core Web API** implementation for playing chess via HTTP requ
 **⚠️ Note:** This is an demo to be used in the (<http://codando.live>) course and there is no chess rules validation.
 Players can move pieces freely. A great **coding exercise** is to add proper validation based on chess rules!
 
+> It is hosted on Azure free tie :)
+
 ## 🚀 How to Start a New Game
 
 To create a new chess game instance:
@@ -11,7 +13,7 @@ To create a new chess game instance:
 * Request
 
   ```http
-  GET http://localhost:5092/api/game/new
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
   ```
 
 * Response
@@ -30,7 +32,7 @@ Once you have the **Game ID**, you can view the **current board state**.
 * Request
 
   ```http
-  GET http://localhost:5092/api/game/{game_id}
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}
   ```
 
   Replace `{game_id}` with your actual Game ID.
@@ -38,7 +40,7 @@ Once you have the **Game ID**, you can view the **current board state**.
   * Example
 
     ```http
-    GET http://localhost:5092/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
+    GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
     ```
 
 * Response
@@ -66,13 +68,13 @@ Use a **GET request** to move a piece by specifying:
 * Request
 
   ```http
-  GET http://localhost:5092/api/game/{game_id}/move={move}
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/move={move}
   ```
 
   * Example
 
     ```http
-    GET http://localhost:5092/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
+    GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
     ```
 
 * Response
