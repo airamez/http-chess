@@ -68,7 +68,7 @@ Use a **GET request** to move a piece by specifying:
 * Request
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/move={move}
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}
   ```
 
   * Example
