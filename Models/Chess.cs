@@ -8,28 +8,28 @@ public class Chess
 
   public Chess()
   {
-    Board = new char[,]
-    {
-      { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }, // Black major pieces
-      { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' }, // Black pawns
-      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
-      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
-      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
-      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
-      { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' }, // White pawns
-      { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' }  // White major pieces
-    };
-
-    // Board = new char[,] {
-    //   { '♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜' },
-    //   { '♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟' },
-    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-    //   { '♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙' },
-    //   { '♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖' }
+    // Board = new char[,]
+    // {
+    //   { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }, // Black major pieces
+    //   { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' }, // Black pawns
+    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
+    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
+    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
+    //   { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, // Empty row
+    //   { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' }, // White pawns
+    //   { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' }  // White major pieces
     // };
+
+    Board = new char[,] {
+      { '♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜' },
+      { '♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟' },
+      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+      { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+      { '♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙' },
+      { '♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖' }
+    };
   }
 
   public void Move(string origin, string destiny)
@@ -69,6 +69,49 @@ public class Chess
       }
       result.Append(Environment.NewLine);
     }
+    return result.ToString();
+  }
+
+  public string ToHtml()
+  {
+    string htmlTemplate = @"
+    <html>
+    <head>
+        <style>
+            body { background-color: black; color: white; text-align: center; }
+            table { border-collapse: collapse; margin: auto; }
+            td { width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: bold; }
+            .light { background-color: #EEEED2; }  /* Light squares */
+            .dark { background-color: #769656; }  /* Dark squares */
+            .white-piece { color: white; }  /* White pieces */
+            .black-piece { color: black; }  /* Black pieces */
+        </style>
+    </head>
+    <body>
+        <table border='1'>
+    ";
+    StringBuilder result = new StringBuilder(htmlTemplate);
+    // File indicators (A-H)
+    result.Append("<tr><td></td>");
+    for (char file = 'A'; file <= 'H'; file++)
+    {
+      result.Append($"<td style='font-weight: bold;'>{file}</td>");
+    }
+    result.Append("</tr>");
+    for (int i = 0; i < Board.GetLength(0); i++)
+    {
+      result.Append("<tr>");
+      // Rank indicators (1-8)
+      result.Append($"<td style='font-weight: bold;'>{8 - i}</td>");
+      for (int j = 0; j < Board.GetLength(1); j++)
+      {
+        string cellClass = (i + j) % 2 == 0 ? "light" : "dark";
+        string pieceClass = char.IsUpper(Board[i, j]) ? "white-piece" : "black-piece"; // Capital letters → White, Lowercase → Black
+        result.Append($"<td class='{cellClass} {pieceClass}'>{Board[i, j]}</td>");
+      }
+      result.Append("</tr>");
+    }
+    result.Append("</table></body></html>");
     return result.ToString();
   }
 }

@@ -28,7 +28,7 @@ namespace HttpChess.Controllers
       {
         return NotFound();
       }
-      return Content(games[id].ToString(), "text/plain; charset=utf-8");
+      return Content(games[id].ToHtml(), "text/html; charset=utf-8");
     }
 
     [HttpGet("{gameId}/move/{move}")]
@@ -44,7 +44,7 @@ namespace HttpChess.Controllers
       }
       Chess game = games[gameId];
       game.Move(move.Substring(0, 2), move.Substring(2, 2));
-      return Content(game.ToString(), "text/plain; charset=utf-8");
+      return Content(game.ToHtml(), "text/html; charset=utf-8");
     }
 
     private bool IsValidChessPositions(string move)

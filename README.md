@@ -29,10 +29,10 @@ To create a new chess game instance:
 
 Once you have the **Game ID**, you can view the **current board state**.
 
-* Request
+* Request (GET)
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}
   ```
 
   Replace `{game_id}` with your actual Game ID.
@@ -40,24 +40,14 @@ Once you have the **Game ID**, you can view the **current board state**.
   * Example
 
     ```http
-    GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
+    https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
     ```
 
 * Response
 
   A **chessboard representation**, using Unicode chess pieces, is returned.
 
-  ```text
-    A B C D E F G H
-  8 R N B Q K B N R 
-  7 P P P P P P P P 
-  6                 
-  5                 
-  4                 
-  3                 
-  2 p p p p p p p p 
-  1 r n b q k b n r 
-  ```
+  ![Board](images/chess-board.png)
 
 ## ♞ Moving a Chess Piece
 
@@ -65,16 +55,16 @@ Use a **GET request** to move a piece by specifying:
 
 * `move`: The **Origing and Destiny** of the piece (e.g., `A7A6`)
 
-* Request
+* Request (GET)
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}
   ```
 
   * Example
 
     ```http
-    GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
+    https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
     ```
 
 * Response
