@@ -32,10 +32,14 @@ public class Chess
     // };
   }
 
-  public void Move(string source, string target)
+  public void Move(string origin, string destiny)
   {
-    var sourceCell = Extract(source.ToUpper());
-    var targetCell = Extract(target.ToUpper());
+    var sourceCell = Extract(origin.ToUpper());
+    if (Board[sourceCell.Row, sourceCell.Col] == ' ')
+    {
+      return;
+    }
+    var targetCell = Extract(destiny.ToUpper());
     char piece = Board[sourceCell.Row, sourceCell.Col];
     Board[sourceCell.Row, sourceCell.Col] = ' ';
     Board[targetCell.Row, targetCell.Col] = piece;
