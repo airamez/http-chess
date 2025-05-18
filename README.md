@@ -18,12 +18,15 @@ There is **no chess rules validation**—players can move pieces freely.
 
 * Response
 
-  Returns a **unique Game ID**.
+  Returns the **unique Game ID** and the URL to see the board,make moves and delete the game.
 
   * Example
 
     ```text
-    3b8ac115-9807-472e-9ddd-b9d798657e90
+    GameId = 100fa757-868d-4e8e-af6f-23f1e832a461
+    Game URL = https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/100fa757-868d-4e8e-af6f-23f1e832a461
+    Move Pieces = https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/100fa757-868d-4e8e-af6f-23f1e832a461/move/X9X9
+    Delete = https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/100fa757-868d-4e8e-af6f-23f1e832a461/delete
     ```
 
 ## 🔍 View the Game Board
