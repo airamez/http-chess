@@ -1,86 +1,107 @@
-# HTTP Chess API 🏁
+# HTTP Chess API ♜
 
-A simple **ASP.NET Core Web API** implementation for playing chess via HTTP requests.  
-**⚠️ Note:** This is an demo to be used in the (<http://codando.live>) course and there is no chess rules validation.
-Players can move pieces freely. A great **coding exercise** is to add proper validation based on chess rules!
+A lightweight **ASP.NET Core Web API** for playing chess via HTTP requests.
 
-> It is hosted on Azure free tie :)
+🚨 **Note:** This is a demo used in the [Codando Live](http://codando.live) course.  
+There is **no chess rules validation**—players can move pieces freely.  
+💡 A great coding exercise is to implement **proper validation** based on chess rules.
 
-## 🚀 How to Start a New Game
+> **Hosted on Azure Free Tier** ✅
 
-To create a new chess game instance:
+## 🏁 Start a New Game
+
+### 🔹 Request
+
+```http
+GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
+```
+
+* Response
+
+  Returns a **unique Game ID**.
+
+  * Example
+
+  ```text
+  3b8ac115-9807-472e-9ddd-b9d798657e90
+  ```
+
+---
+
+## 🔍 View the Game Board
+
+Retrieve the **current board state** using your **Game ID**.
 
 * Request
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}
   ```
 
-* Response
-
-  A **unique Game ID** is returned.
-  Example:
-
-  ```json
-  3b8ac115-9807-472e-9ddd-b9d798657e90
-  ```
-
-## 🏆 Viewing the Game Board
-
-Once you have the **Game ID**, you can view the **current board state**.
-
-* Request (GET)
-
-  ```http
-  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}
-  ```
-
-  Replace `{game_id}` with your actual Game ID.
+  >Replace `{game_id}` with your actual Game ID.
 
   * Example
 
-    ```http
-    https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
-    ```
+  ```http
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
+  ```
 
 * Response
 
-  A **chessboard representation**, using Unicode chess pieces, is returned.
+  Returns a **chessboard representation** using Unicode chess pieces.
 
   ![Board](images/chess-board.png)
 
-## ♞ Moving a Chess Piece
+---
 
-Use a **GET request** to move a piece by specifying:
+## ➡️ Make a Move
 
-* `move`: The **Origing and Destiny** of the piece (e.g., `A7A6`)
+Move a piece by specifying the **origin** and **destination** (e.g., `A7A6`).
 
-* Request (GET)
+* Request
 
   ```http
-  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}
   ```
 
   * Example
 
     ```http
-    https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
+    GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
     ```
 
 * Response
 
-  The **updated chessboard** after moving the piece.
-
-## 🛠️ Next Steps: Add Chess Rule Validation
-
-Currently, the API lets you move **any piece anywhere**, breaking chess rules.  
-As a **programming challenge**, try implementing:
-
-* **Legal move validation** (e.g., knights move in L-shape).
-* **Turn-based movement** (white moves first).
-* **Checkmate detection** (game-ending logic).
-* **Castling & en passant mechanics**.
+  Returns the **updated chessboard** after the move.
 
 ---
 
-Enjoy ♜♞♖
+## 🗑️ Delete a Game
+
+* Request
+
+  ```http
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/delete
+  ```
+
+  * Example
+
+  ```http
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/delete
+  ```
+
+---
+
+## 🛠️ Next Steps: Implement Chess Rule Validation
+
+Currently, the API allows **any move**, ignoring chess rules.  
+Take on the challenge of **adding logic** to enforce:
+
+✅ **Legal move validation** (e.g., knights move in L-shape).  
+✅ **Turn-based movement** (white moves first).  
+✅ **Checkmate detection** (game-ending logic).  
+✅ **Castling & en passant mechanics**.
+
+---
+
+♖ **Happy Coding!** ♜♞♛

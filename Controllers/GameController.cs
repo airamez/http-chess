@@ -51,5 +51,12 @@ namespace HttpChess.Controllers
     {
       return Regex.IsMatch(move, "^[a-h][1-8][a-h][1-8]$", RegexOptions.IgnoreCase);
     }
+
+    [HttpGet("{gameId}/delete")]
+    public IActionResult Delete(Guid gameId)
+    {
+      games.Remove(gameId);
+      return NoContent();
+    }
   }
 }
