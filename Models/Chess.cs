@@ -81,8 +81,8 @@ public class Chess
             body { background-color: black; color: white; text-align: center; }
             table { border-collapse: collapse; margin: auto; }
             td { width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: bold; }
-            .light { background-color: #EEEED2; }  /* Light squares */
-            .dark { background-color: #769656; }  /* Dark squares */
+            .light { background-color: #EEEED2; }
+            .dark { background-color: #769656; }
             .white-piece { color: white; }  /* White pieces */
             .black-piece { color: black; }  /* Black pieces */
         </style>
@@ -106,7 +106,7 @@ public class Chess
       for (int j = 0; j < Board.GetLength(1); j++)
       {
         string cellClass = (i + j) % 2 == 0 ? "light" : "dark";
-        string pieceClass = char.IsUpper(Board[i, j]) ? "white-piece" : "black-piece"; // Capital letters → White, Lowercase → Black
+        string pieceClass = char.IsUpper(Board[i, j]) ? "white-piece" : "black-piece";
         result.Append($"<td class='{cellClass} {pieceClass}'>{Board[i, j]}</td>");
       }
       result.Append("</tr>");
