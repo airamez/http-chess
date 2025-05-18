@@ -21,18 +21,21 @@ namespace HttpChess.Controllers
     }
 
 
-    [HttpGet("{id}")]
-    public IActionResult Game(Guid id)
+    [HttpGet("{id}/{format?}")]
+    public IActionResult Game(Guid id, string format = "html")
     {
       if (!games.ContainsKey(id))
       {
         return NotFound();
       }
-      return Content(games[id].ToHtml(), "text/html; charset=utf-8");
+      Chess game = games[id];
+      return format.ToLower() == "text"
+        ? Content(game.ToString(), "text/plain; charset=utf-8")
+        : Content(game.ToHtml(), "text/html; charset=utf-8");
     }
 
-    [HttpGet("{gameId}/move/{move}")]
-    public IActionResult MovePiece(Guid gameId, string move)
+    [HttpGet("{gameId}/move/{move}/{format?}")]
+    public IActionResult MovePiece(Guid gameId, string move, string format = "html")
     {
       if (!games.ContainsKey(gameId))
       {
@@ -44,7 +47,9 @@ namespace HttpChess.Controllers
       }
       Chess game = games[gameId];
       game.Move(move.Substring(0, 2), move.Substring(2, 2));
-      return Content(game.ToHtml(), "text/html; charset=utf-8");
+      return format.ToLower() == "text"
+        ? Content(game.ToString(), "text/plain; charset=utf-8")
+        : Content(game.ToHtml(), "text/html; charset=utf-8");
     }
 
     private bool IsValidChessPositions(string move)

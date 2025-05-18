@@ -32,62 +32,82 @@ GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
 
 Retrieve the **current board state** using your **Game ID**.
 
-* Request
+* Request (GET)
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}[/mode]
   ```
 
-  >Replace `{game_id}` with your actual Game ID.
+  >Replace `{game_id}` with your actual Game ID and `mode` can be text. The default is html
 
-  * Example
+* Example returning as HTML
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
   ```
 
-* Response
+  * Response
 
-  Returns a **chessboard representation** using Unicode chess pieces.
+    Returns a **chessboard representation** as HTML.
 
-  ![Board](images/chess-board.png)
+    ![Board](images/chess-board.png)
 
----
+* Example returning as TEXT
+
+  ```http
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/text
+  ```
+
+  * Response
+
+    ```text
+      A  B C  D E  F G  H
+    8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 
+    7   ♟ ♟ ♟ ♟ ♟ ♟ ♟ 
+    6 ♟               
+    5                 
+    4                 
+    3                 
+    2 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ 
+    1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 
+    ```
 
 ## ➡️ Make a Move
 
 Move a piece by specifying the **origin** and **destination** (e.g., `A7A6`).
 
-* Request
+* Request (GET)
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}
+  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/{move}[/{mode}]
   ```
 
-  * Example
+  * Example returning as HTML
 
     ```http
-    GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
+    https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6
     ```
 
-* Response
+  * Example returning as TEXT
 
-  Returns the **updated chessboard** after the move.
+    ```http
+    https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/move/A7A6/text
+    ```
 
 ---
 
 ## 🗑️ Delete a Game
 
-* Request
+* Request (GET)
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/delete
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}/delete
   ```
 
   * Example
 
   ```http
-  GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/delete
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90/delete
   ```
 
 ---
@@ -95,13 +115,14 @@ Move a piece by specifying the **origin** and **destination** (e.g., `A7A6`).
 ## 🛠️ Next Steps: Implement Chess Rule Validation
 
 Currently, the API allows **any move**, ignoring chess rules.  
-Take on the challenge of **adding logic** to enforce:
+Take on the challenge of **adding logic** to:
 
-✅ **Legal move validation** (e.g., knights move in L-shape).  
-✅ **Turn-based movement** (white moves first).  
-✅ **Checkmate detection** (game-ending logic).  
-✅ **Castling & en passant mechanics**.
+* ✅ **EnforceLegal move validation** (e.g., knights move in L-shape).  
+* ✅ **Turn-based movement** (white moves first).  
+* ✅ **Checkmate detection** (game-ending logic).  
+* ✅ **Castling & en passant mechanics**.
+* ✅ **Allow Undo operation**.
 
 ---
 
-♖ **Happy Coding!** ♜♞♛
+♕♔ **Enjoy and Happy Coding!** ♛♚
