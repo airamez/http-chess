@@ -10,11 +10,11 @@ There is **no chess rules validation**—players can move pieces freely.
 
 ## 🏁 Start a New Game
 
-### 🔹 Request
+* Request (GET)
 
-```http
-GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
-```
+  ```text
+  https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
+  ```
 
 * Response
 
@@ -22,11 +22,9 @@ GET https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/new
 
   * Example
 
-  ```text
-  3b8ac115-9807-472e-9ddd-b9d798657e90
-  ```
-
----
+    ```text
+    3b8ac115-9807-472e-9ddd-b9d798657e90
+    ```
 
 ## 🔍 View the Game Board
 
@@ -34,7 +32,7 @@ Retrieve the **current board state** using your **Game ID**.
 
 * Request (GET)
 
-  ```http
+  ```text
   https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{game_id}[/mode]
   ```
 
@@ -42,7 +40,7 @@ Retrieve the **current board state** using your **Game ID**.
 
 * Example returning as HTML
 
-  ```http
+  ```text
   https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/3b8ac115-9807-472e-9ddd-b9d798657e90
   ```
 
