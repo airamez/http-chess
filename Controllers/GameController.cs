@@ -43,7 +43,7 @@ namespace HttpChess.Controllers
       }
       if (!IsValidChessPositions(move))
       {
-        return BadRequest("Invalid position format. Use standard chess notation (e.g., E2A7).");
+        return BadRequest("Invalid position format. Use standard chess notation (e.g., E2A6).");
       }
       Chess game = games[gameId];
       game.Move(move.Substring(0, 2), move.Substring(2, 2));
