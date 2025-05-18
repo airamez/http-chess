@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HttpChess.Models;
 using System.Text.RegularExpressions;
+using System.Text;
 
 
 namespace HttpChess.Controllers
@@ -17,7 +18,13 @@ namespace HttpChess.Controllers
     {
       Guid newGameId = Guid.NewGuid();
       games[newGameId] = new Chess();
-      return Content(newGameId.ToString(), "text/plain");
+      string gameURL = $"https://http-chess-ckfyheevasetabez.westus-01.azurewebsites.net/api/game/{newGameId}";
+      var result = new StringBuilder();
+      result.Append($"GameId = {newGameId}\n");
+      result.Append($"Game URL = {gameURL}\n");
+      result.Append($"Move Pieces = {$"{gameURL}/move/X9X9"}\n");
+      result.Append($"Delete = {$"{gameURL}/delete"}");
+      return Content(result.ToString(), "text/plain");
     }
 
 
